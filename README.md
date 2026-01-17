@@ -49,25 +49,28 @@ pip install rembg pillow
 
 ## Usage
 
-1. **Prepare your image**: Place your input image in the project directory. By default, the script looks for `input.jpg`.
+1. **Prepare your image**: Place your input image in the project directory.
 2. **Run the script**:
+   
+   **Interactive Mode:**
+   Simply run the script and follow the prompts used to guide you through the process:
    ```bash
    python background_remover.py
    ```
-3. **Check the output**: The processed image will be saved as `output.png` in the same directory.
+   You will be asked to provide:
+   1. **Input image path**: The path to your image file.
+   2. **Output image path**: Where to save the result (defaults to `upscaled.png`).
+   3. **Upscaling factor**: Choose between `2`, `4`, or `8` (defaults to `2`).
 
-### Customization
+   **Command Line Interface (CLI):**
+   You can also pass arguments directly:
+   ```bash
+   python background_remover.py -i input.jpg -o output.png -s 4
+   ```
 
-You can modify the `background_remover.py` file to change default settings at the bottom of the script:
+   **Arguments:**
+   - `-i`, `--input`: Path to input image (required in CLI mode, or prompted).
+   - `-o`, `--output`: Path to save output image (default: `upscaled.png`).
+   - `-s`, `--scale`: Upscaling factor. Choices: `2`, `4`, `8` (default: `2`).
 
-```python
-if __name__ == "__main__":
-    input_image_path = "input.jpg"  # Change input filename
-    output_image_path = "output.png" # Change output filename
-    
-    remove_background_enhance_and_upscale(
-        input_image_path, 
-        output_image_path, 
-        scale=2  # Change upscaling factor (e.g., 4)
-    )
-```
+3. **Check the output**: The processed image will be saved to your specified output path.
