@@ -4,6 +4,9 @@ This Python script automates the process of removing backgrounds from images, up
 
 ## Features
 
+- **Dual Processing Modes**:
+  - **Remove Background & Upscale**: Standard full processing.
+  - **Upscale Only**: Enhanced image upscaling without removing the background.
 - **Background Removal**: Utilizes the `rembg` library for accurate background removal.
 - **Image Upscaling**: Increases image resolution (default 2x) using high-quality Lanczos resampling.
 - **Image Enhancement**:
@@ -53,29 +56,33 @@ pip install rembg pillow
 2. **Run the script**:
    
    **Interactive Mode:**
-   Simply run the script and follow the prompts used to guide you through the process:
+   Simply run the script and follow the prompts:
    ```bash
-   python background_remover.py
+   python image_processor.py
    ```
-   You will be asked to provide:
-   1. **Input image path**: The path to your image file.
-   2. **Output image path**: Where to save the result (defaults to `upscaled.png`).
-   3. **Upscaling factor**: Choose between `2`, `4`, or `8` (defaults to `2`).
+   You will be asked to:
+   1. **Select Mode**:
+      - `1`: **Remove Background & Upscale** (Standard behavior)
+      - `2`: **Upscale Only** (Keeps background, only enhances quality)
+   2. **Input image path**: The path to your image file.
+   3. **Output image path**: Where to save the result.
+   4. **Upscaling factor**: Choose `2`, `4`, or `8`.
 
    **Command Line Interface (CLI):**
-   You can also pass arguments directly:
+   You can pass arguments directly, including the new mode flag:
    ```bash
-   python background_remover.py -i input.jpg -o output.png -s 4
+   python image_processor.py -m 2 -i input.jpg -o output.png -s 4
    ```
 
    **Arguments:**
-   - `-i`, `--input`: Path to input image (required in CLI mode, or prompted).
-   - `-o`, `--output`: Path to save output image (default: `upscaled.png`).
-   - `-s`, `--scale`: Upscaling factor. Choices: `2`, `4`, `8` (default: `2`).
+   - `-m`, `--mode`: Processing mode (`1` = Remove BG + Upscale, `2` = Upscale Only).
+   - `-i`, `--input`: Path to input image.
+   - `-o`, `--output`: Path to save output image.
+   - `-s`, `--scale`: Upscaling factor (`2`, `4`, `8`).
 
 3. **Check the output**: The processed image will be saved to your specified output path.
 
 ### Notes
 
-- **First Run**: The first time you run the script, it will download the U2NET model (approx. 170MB). This may take a few moments depending on your internet connection.
-- **File Size**: The output is saved as an optimized PNG. File sizes will vary based on the input image's resolution and complexity. No file size limit is currently enforced.
+- **First Run**: The first time you run `rembg` (Mode 1), it will download the U2NET model (approx. 170MB). Upscale Only mode does not require this.
+- **File Size**: The output is saved as an optimized PNG. No file size limit is currently enforced.
