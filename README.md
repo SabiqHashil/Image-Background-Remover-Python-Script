@@ -74,3 +74,8 @@ pip install rembg pillow
    - `-s`, `--scale`: Upscaling factor. Choices: `2`, `4`, `8` (default: `2`).
 
 3. **Check the output**: The processed image will be saved to your specified output path.
+
+### Notes
+
+- **First Run**: The first time you run the script, it will download the U2NET model (approx. 170MB). This may take a few moments depending on your internet connection.
+- **File Size**: The output is saved as an optimized PNG. File sizes will vary based on the input image's resolution and complexity. No file size limit is currently enforced.
